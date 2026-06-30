@@ -1,0 +1,126 @@
+/* Base Resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Overpass', sans-serif;
+  background-color: transparent; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.form-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 650px;
+  padding: 2.5rem;
+  border-radius: 16px;
+  color: #2b423a;
+}
+
+.form-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.8rem;
+  color: #1d332a;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: #2b423a;
+  font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  border: 1px solid #8caba0;
+  border-radius: 6px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #1d332a;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #0c7d5c;
+}
+
+.radio-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.radio-card {
+  border: 1px solid #8caba0;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+}
+
+.radio-card input[type="radio"] {
+  accent-color: #0c7d5c;
+  transform: scale(1.2);
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+.form-checkbox input {
+  accent-color: #0c7d5c;
+  transform: scale(1.2);
+}
+
+.btn-submit {
+  background-color: #0c7d5c;
+  color: #ffffff;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #085a42;
+}
+
+@media (max-width: 600px) {
+  .form-row, .radio-row {
+    grid-template-columns: 1fr;
+  }
+  .form-container {
+    padding: 1.5rem;
+  }
+}

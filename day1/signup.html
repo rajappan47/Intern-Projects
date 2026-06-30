@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us Form</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Contact Us</h2>
+    
+    <form class="contact-form" id="contactForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name *</label>
+          <input type="text" id="firstName" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name *</label>
+          <input type="text" id="lastName" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" required>
+      </div>
+
+      <div class="form-group">
+        <label>Query Type *</label>
+        <div class="radio-row">
+          <label class="radio-card">
+            <input type="radio" name="queryType" value="General Enquiry" checked>
+            <span>General Enquiry</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="queryType" value="Support Request">
+            <span>Support Request</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message *</label>
+        <textarea id="message" rows="5" required></textarea>
+      </div>
+
+      <div class="form-checkbox">
+        <input type="checkbox" id="consent" required>
+        <label for="consent">I consent to being contacted by the team *</label>
+      </div>
+
+      <button type="submit" class="btn-submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      // Prevent the page from reloading on form submission
+      event.preventDefault();
+
+      // Gather input values into a structured JavaScript Object
+      const formData = {
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        queryType: document.querySelector('input[name="queryType"]:checked').value,
+        message: document.getElementById('message').value.trim(),
+        consentGiven: document.getElementById('consent').checked
+      };
+
+      // Log the object beautifully to the browser console
+      console.log("Form Submitted Successfully! Data Object:", formData);
+      
+      // Optional: Alert the user or clear the form fields
+      alert("form submited successfully");
+      this.reset(); 
+    });
+  </script>
+
+</body>
+</html>
