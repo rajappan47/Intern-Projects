@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registry Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Student Management System</h1>
+
+    
+    <div class="panel">
+        <h3>Dashboard Metrics</h3>
+        <p>Total Students: <strong id="totalCount">0</strong></p>
+        <p>Average Age: <strong id="avgAge">0</strong></p>
+    </div>
+
+    
+    <div class="panel">
+        <h3 id="formTitle">Add Student</h3>
+        <form id="studentForm">
+            <div class="form-row">
+                <label>Name:</label>
+                <input type="text" id="studName" required placeholder="John Doe">
+            </div>
+            <div class="form-row">
+                <label>Age:</label>
+                <input type="number" id="studAge" required placeholder="20">
+            </div>
+            <div class="form-row">
+                <label>Department:</label>
+                <select id="studDept" required>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Data Science">Data Science</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                </select>
+            </div>
+            <button type="submit" id="submitBtn">Add Student</button>
+            <button type="button" id="cancelBtn" style="display:none;">Cancel Edit</button>
+        </form>
+    </div>
+
+    
+    <div class="panel">
+        <h3>Student Database Roster</h3>
+        <div class="controls-bar">
+            <input type="text" id="searchBox" placeholder="Search student by name...">
+            
+            <select id="filterDept">
+                <option value="All">All Departments</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+            </select>
+
+            <button id="sortBtn">Sort by Name (A-Z)</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Age</th>
+                    <th>Department</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+               
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
