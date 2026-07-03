@@ -1,12 +1,26 @@
+
 document.addEventListener('DOMContentLoaded', () => {
   // Mobile Hamburger Menu Activation Flow
   const hamburger = document.getElementById('hamburgerMenu');
   const navbar = document.querySelector('.navbar');
   const modalOverlay = document.getElementById('signupModal');
 
+  function openModal() {
+    modalOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+    modalOverlay.classList.remove("active");
+    document.body.style.overflow = "visible";
+     document.body.style.overflow = "visible";
+    document.documentElement.style.overflow = "visible";
+}
+
   const products = ['Overview', 'Pricing', 'Marketplace', 'Features', 'Integrations'];
   const companies = ['About', 'Team', 'Blog', 'Careers'];
   const connects = ['Contact', 'Newsletter', 'LinkedIn'];
+
 
   if (hamburger) {
     hamburger.addEventListener('click', () => {
@@ -50,10 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('mobileSignUpTrigger').addEventListener('click', (e) => {
           e.preventDefault();
-          modalOverlay.classList.add('active');
+          //modalOverlay.classList.add('active');
+          openModal();
           menuContainer.remove();
           hamburger.classList.remove('active');
           navbar.classList.remove('mobile-active');
+          //document.body.style.overflow = 'hidden';
         });
       }
     });
@@ -66,20 +82,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (signUpBtn && modalOverlay) {
     signUpBtn.addEventListener('click', (e) => {
       e.preventDefault(); // Blocks actual page routing redirect
-      modalOverlay.classList.add('active');
+      //modalOverlay.classList.add('active');
+      //document.body.style.overflow = 'hidden';
+       openModal();
     });
   }
 
   if (closeModalBtn && modalOverlay) {
     closeModalBtn.addEventListener('click', () => {
-      modalOverlay.classList.remove('active');
+      closeModal();
+      //modalOverlay.classList.remove('active');
     });
   }
 
   window.addEventListener('click', (event) => {
-    if (event.target === modalOverlay) {
-      modalOverlay.classList.remove('active');
-    }
+    //if (event.target === modalOverlay) {
+      //modalOverlay.classList.remove('active');
+    //}
+    //document.body.style.overflow = 'auto';
   });
 });
 
