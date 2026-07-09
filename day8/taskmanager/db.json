@@ -1,0 +1,95 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "rajappan@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "2",
+      "email": "rahul@gmail.com",
+      "password": "123456"
+    }
+  ],
+  "tasks": [
+    {
+      "title": "hgfds",
+      "priority": "Low",
+      "id": "u14pRNSCi2Q",
+      "status": "Completed"
+    },
+    {
+      "title": "kndsicbwi",
+      "priority": "High",
+      "id": "h6YPAEsIX8s",
+      "status": "In Progress"
+    },
+    {
+      "title": "lmdkljhswd",
+      "priority": "Medium",
+      "id": "bmZNt-W_u8s",
+      "status": "Completed"
+    },
+    {
+      "title": "dfvgf frg f",
+      "priority": "Low",
+      "id": "WmqQiLZShbE",
+      "status": "In Progress"
+    },
+    {
+      "title": "lkekcr",
+      "priority": "Low",
+      "id": "EXZxdHoOt3c"
+    },
+    {
+      "title": "ticksfffkje @13323343k4m4l.comlk",
+      "priority": "High",
+      "id": "cncjlgQoHWE"
+    },
+    {
+      "title": "gfdesgtrfd",
+      "priority": "Low",
+      "id": "zPDeWBdm_s4"
+    },
+    {
+      "title": "     jnkj123",
+      "priority": "Medium",
+      "id": "rPvq63aunUY"
+    },
+    {
+      "title": "taskcomplete",
+      "priority": "Low",
+      "status": "Pending",
+      "id": "xNxAmxojFYY"
+    },
+    {
+      "title": "gvv",
+      "priority": "High",
+      "status": "Pending",
+      "userId": "1",
+      "id": "NOvcaJYKCOI"
+    },
+    {
+      "title": "dfgvgf",
+      "priority": "High",
+      "status": "Pending",
+      "userId": "1",
+      "id": "sNIYPWH7sTk"
+    },
+    {
+      "title": "hgfdsgfdsa",
+      "priority": "Low",
+      "status": "Pending",
+      "userId": "2",
+      "id": "-kNI2X3SCkg"
+    },
+    {
+      "title": "mnbvcxfds",
+      "priority": "Low",
+      "status": "Pending",
+      "userId": "2",
+      "id": "tYFuCyC-2fo"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
