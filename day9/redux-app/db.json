@@ -1,0 +1,45 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "rajappan c",
+      "email": "rajappan@gmail.com",
+      "password": "@Rahul4723",
+      "employeeId": "EMP101",
+      "department": "Frontend",
+      "designation": "React Developer",
+      "phone": "987654320",
+      "location": "Chennai",
+      "experience": "Fresher",
+      "joiningDate": "2025-01-10"
+    }
+  ],
+  "tasks": [
+    {
+      "title": "Learn react",
+      "priority": "Medium",
+      "id": "VT0VVW-_3qA"
+    },
+    {
+      "title": "Learn Zustand",
+      "priority": "Medium",
+      "id": "wRQMNbrsF-o"
+    },
+    {
+      "title": "Learn Context",
+      "priority": "Medium",
+      "id": "AmMU4nVMwVo"
+    },
+    {
+      "title": "kjguydtr 33344",
+      "priority": "Medium",
+      "id": "wjBFrOZojxc"
+    },
+    {
+      "title": "kjysefghjksl",
+      "priority": "Medium",
+      "id": "DgOw7iT4nlY"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

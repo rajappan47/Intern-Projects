@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Rajappan c",
+      "email": "rajappan@gmail.com",
+      "password": "@Rahul4723",
+      "employeeId": "EMP101",
+      "department": "Frontend",
+      "designation": "React Developer",
+      "phone": "9876543210",
+      "location": "Chennai",
+      "experience": "2 Years",
+      "joiningDate": "2025-01-10"
+    }
+  ],
+  "tasks": [
+    {
+      "title": "Learn MangoDB",
+      "priority": "Medium",
+      "id": "k8dZ2GUHxEk"
+    },
+    {
+      "title": "Learn Express.js",
+      "priority": "Medium",
+      "id": "1Q9JqlFzCxk"
+    },
+    {
+      "title": "Learn Node.js",
+      "priority": "Medium",
+      "id": "VQhoUQ2vLVI"
+    },
+    {
+      "title": "Learn AIdkjhbfuwgdw",
+      "priority": "Medium",
+      "id": "813HNfZ23lA"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
