@@ -1,0 +1,103 @@
+.navbar-container {
+  height: 90px;
+  background-color: var(--bg-sidebar);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  zIndex: 10;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Hidden by default on desktop screens */
+.mobile-logo-bars {
+  display: none;
+  gap: 4px;
+}
+.mobile-logo-bars span {
+  width: 4px;
+  height: 18px;
+  background-color: #635FC7;
+  border-radius: 1px;
+}
+
+.navbar-title {
+  color: var(--text-main);
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-dropdown-icon {
+  display: none;
+  font-size: 12px;
+  color: #635FC7;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.add-task-btn {
+  background-color: var(--purple-primary) !important;
+  border-color: var(--purple-primary) !important;
+  font-weight: bold !important;
+  height: 48px !important;
+  padding: 0 24px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.navbar-more-icon {
+  color: var(--text-muted);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* RESPONSIVE MEDIA QUERY FOR MOBILE BREAKPOINT */
+@media (max-width: 650px) {
+  .navbar-container {
+    height: 64px;
+    padding: 0 16px;
+  }
+
+  .mobile-logo-bars {
+    display: flex; /* Shows the logo bars exactly like the mobile screenshot */
+  }
+
+  .navbar-title {
+    font-size: 18px;
+  }
+
+  .mobile-dropdown-icon {
+    display: inline-block; /* Shows downstream arrow dropdown on mobile */
+  }
+
+  /* Compact button transformation config */
+  .add-task-btn {
+    height: 32px !important;
+    width: 48px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+
+  .add-task-btn .anticon {
+    font-size: 16px !important;
+    margin: 0 !important;
+  }
+
+  .btn-text {
+    display: none; /* Hides "Add New Task" text context smoothly */
+  }
+}

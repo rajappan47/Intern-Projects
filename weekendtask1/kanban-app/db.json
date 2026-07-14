@@ -1,0 +1,136 @@
+{
+  "boards": [
+    {
+      "id": "board-1",
+      "name": "Platform Launch",
+      "columns": [
+        {
+          "id": "col-todo",
+          "name": "TODO",
+          "color": "#49C4E5",
+          "tasks": []
+        },
+        {
+          "id": "col-doing",
+          "name": "DOING",
+          "color": "#8471F2",
+          "tasks": [
+            {
+              "id": "task-2",
+              "title": "Build UI for search",
+              "description": "",
+              "status": "col-doing",
+              "subtasks": [
+                {
+                  "title": "Search bar layout",
+                  "isCompleted": false
+                }
+              ]
+            },
+            {
+              "id": "task-1",
+              "title": "Build UI for onboarding flow",
+              "description": "We know what we're planning to build for version one.",
+              "status": "col-doing",
+              "subtasks": [
+                {
+                  "title": "Sign up page",
+                  "isCompleted": true
+                },
+                {
+                  "title": "Sign in page",
+                  "isCompleted": true
+                },
+                {
+                  "title": "Welcome screen",
+                  "isCompleted": true
+                }
+              ]
+            },
+            {
+              "id": "task-1783866421177",
+              "title": "react",
+              "description": "react",
+              "status": "col-doing",
+              "subtasks": []
+            }
+          ]
+        },
+        {
+          "id": "col-done",
+          "name": "DONE",
+          "color": "#67E2AE",
+          "tasks": [
+            {
+              "id": "task-1783866370374",
+              "title": "js",
+              "description": "js",
+              "status": "col-done",
+              "subtasks": [
+                {
+                  "title": "todo",
+                  "isCompleted": true
+                },
+                {
+                  "title": "app",
+                  "isCompleted": true
+                }
+              ]
+            },
+            {
+              "id": "task-1783868147142",
+              "title": "bkj",
+              "description": "",
+              "status": "col-done",
+              "subtasks": [
+                {
+                  "title": "sjbks",
+                  "isCompleted": true
+                },
+                {
+                  "title": "jsdba",
+                  "isCompleted": true
+                },
+                {
+                  "title": "skdka",
+                  "isCompleted": true
+                }
+              ]
+            },
+            {
+              "id": "58ceee17-64b1-4287-ae21-12e234cb347f",
+              "title": "jksbskqaw",
+              "description": "skjsiq",
+              "status": "col-done",
+              "subtasks": [
+                {
+                  "title": "slikswiq",
+                  "isCompleted": true
+                },
+                {
+                  "title": "jjjwkiwk",
+                  "isCompleted": false
+                },
+                {
+                  "title": "wlkndskwd",
+                  "isCompleted": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "board-2",
+      "name": "Marketing Plan",
+      "columns": []
+    },
+    {
+      "id": "board-3",
+      "name": "Roadmap",
+      "columns": []
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,0 +1,150 @@
+.sidebar {
+  width: 300px;
+  background-color: #2B2C37;
+  height: 100vh;
+  border-right: 1px solid #3E3F4E;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  flex-shrink: 0;
+}
+/* Background shade overlay rule config */
+.mobile-backdrop {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 90px);
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+@media (max-width: 650px) {
+  .mobile-backdrop {
+    top: 64px;
+    height: calc(100vh - 64px);
+  }
+
+  /* Transform the sidebar into a floating dropdown modal card on mobile view screens */
+  .sidebar.mobile-hide {
+    display: none !important;
+  }
+
+  .sidebar.mobile-show {
+    display: flex !important;
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 264px;
+    height: auto;
+    max-height: 70vh;
+    border-radius: 8px;
+    z-index: 100;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+    border: none !important;
+    padding-bottom: 16px;
+  }
+
+  .logo-container, .hide-sidebar {
+    display: none !important; /* Hides desktop specific decoration tags on mobile */
+  }
+
+  .boards-count {
+    padding: 16px 24px 0 24px;
+  }
+}
+
+/* Three Purple Logo Bars Fix */
+.logo-container {
+  padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.logo-bars {
+  display: flex;
+  gap: 4px;
+}
+.logo-bars span {
+  width: 6px;
+  height: 25px;
+  background-color: #635FC7;
+  border-radius: 2px;
+}
+.logo-text {
+  margin: 0;
+  color: #FFFFFF;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.boards-count {
+  padding: 0 24px;
+  font-size: 12px;
+  letter-spacing: 2.4px;
+  color: #828FA3;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Curved Purple Active Board Tab Box Adjustment */
+.boards-list {
+  padding-right: 24px; /* Leaves space on the right for the pill radius */
+}
+.board-item {
+  padding: 14px 24px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0 100px 100px 0;
+  color: #828FA3;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  transition: all 0.2s ease;
+}
+.board-icon {
+  font-size: 18px;
+  margin-right: 16px;
+}
+.board-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #635FC7;
+}
+.board-item.active {
+  background-color: #635FC7;
+  color: #FFFFFF;
+}
+.board-item.active .board-icon {
+  color: #FFFFFF;
+}
+.board-item.create-new {
+  color: #635FC7;
+  padding-left: 58px; /* Aligns smoothly under text list items */
+}
+
+.theme-toggle {
+  background-color: #20212C;
+  margin: 16px 24px;
+  padding: 14px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.hide-sidebar {
+  padding: 10px 24px 0 24px;
+  color: #828FA3;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+.hide-sidebar:hover {
+  color: #FFFFFF;
+}
