@@ -19,7 +19,7 @@ export const useMovieSearch = (query, page) => {
     setError(null);
 
     try {
-      const response = await fetch(`${BASE_URL}&s=${encodeURIComponent(query)}&page=${page}`);
+      const response = await fetch(`${BASE_URL}&s=${encodeURIComponent(query)}`);
       const data = await response.json();
       console.log(data);
 

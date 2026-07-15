@@ -1,0 +1,51 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "available": false
+    },
+    {
+      "id": 2,
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "available": false
+    },
+    {
+      "id": 3,
+      "title": "1984",
+      "author": "George Orwell",
+      "available": false
+    },
+    {
+      "id": 4,
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "available": true
+    }
+  ],
+  "bookings": [
+    {
+      "id": 1784021835640,
+      "bookId": 1,
+      "bookTitle": "The Great Gatsby",
+      "studentName": "rahul",
+      "bookingDate": "2026-07-14T09:37:15.640Z"
+    },
+    {
+      "id": 1784022189401,
+      "bookId": 2,
+      "bookTitle": "To Kill a Mockingbird",
+      "studentName": "suriya",
+      "bookingDate": "2026-07-14T09:43:09.401Z"
+    },
+    {
+      "id": 1784032409027,
+      "bookId": 3,
+      "bookTitle": "1984",
+      "studentName": "mani",
+      "bookingDate": "2026-07-14T12:33:29.027Z"
+    }
+  ]
+}

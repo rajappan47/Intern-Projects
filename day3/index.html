@@ -12,7 +12,7 @@
 
     <div class="search-box">
         <h3>Search Post by ID</h3>
-        <input type="number" id="search-id" placeholder="Enter ID number (e.g., 1, 5, 12)">
+        <input type="number" id="search-id" placeholder="Enter ID number (e.g., 1, 5, 101)">
         <button onclick="searchPostById()">🔍 Find Post</button>
         <button onclick="getPosts()" style="background-color: #6c757d;">Clear Search</button>
     </div>
@@ -20,19 +20,18 @@
     <div class="form-box">
         <h3 id="form-title">Add New Post</h3>
         
-        <p>id:<input type="number" id="post-id"></p>
+        <input type="hidden" id="post-id">
 
         <p>Title: <input type="text" id="post-title" placeholder="Enter post title"></p>
         <p>Body Content: <textarea id="post-body" placeholder="Enter post body text"></textarea></p>
 
-        <button id="save-btn" onclick="handleSave()">Save Post</button>
-        <button id="cancel-btn" onclick="clearForm()" style="display:none;">Cancel</button>
+        <button id="save-btn" type="button" onclick="handleSave(event)">Save Post</button>
+        <button id="cancel-btn" type="button" onclick="clearForm()" style="display:none;">Cancel</button>
     </div>
 
     <hr>
 
     <h2>All Posts</h2>
-    <!--<button onclick="getPosts()">🔄 Refresh List</button>-->
     <div id="list-container">
         <p>Loading posts...</p>
     </div>

@@ -4,7 +4,7 @@ export const MovieCard = React.memo(({ movie, isFavorite, onToggleFavorite, onSe
   
   // Handhandle broken image URLs dynamically
   const handleImageError = (e) => {
-    e.target.src = 'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=300&auto=format&fit=crop';
+    e.target.src = 'https://images.unsplash.com/photo-1440404653cd325-ab127d49abc1?q=80&w=300&auto=format&fit=crop';
   };
 
   // Determine if poster exists or needs fallback

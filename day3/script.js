@@ -1,68 +1,220 @@
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
-let postarr =[];
+let apiPosts = [];   // Stores only API data
+let allPosts = [];   // Stores API data + User Added Data
 
+// ---------------------------------------------------------
+// 1. WINDOW ONLOAD (Fix: Prevents overwriting local changes)
+// ---------------------------------------------------------
 window.onload = function() {
+    // Check if data already exists in LocalStorage
     const savedData = localStorage.getItem("my_cached_posts");
+
     if (savedData) {
-        renderList(JSON.parse(savedData));
+        allPosts = JSON.parse(savedData);
+        console.log("Loaded from LocalStorage on boot, total posts:", allPosts.length);
+        renderList(allPosts);
+    } else {
+        // Data illana mattum thaan API-lerundhu fresh-ah edukanum
+        getPosts();
     }
-    getPosts();
 };
 
+async function getPosts() {
+    try {
+        document.getElementById("search-id").value = "";
 
+        console.log("LocalStorage empty. Fetching from live API...");
+        const response = await fetch(API_URL);
+        const posts = await response.json();
+        
+        // Normalize all IDs to String for consistent matching across UI and storage
+        const normalizedPosts = posts.map(post => ({
+            ...post,
+            id: String(post.id)
+        }));
+
+        apiPosts = [...normalizedPosts];
+        allPosts = [...normalizedPosts];
+        
+        // Save the clean slate to cache
+        localStorage.setItem("my_cached_posts", JSON.stringify(allPosts));
+        renderList(allPosts);
+
+    } catch (error) {
+        console.log("Offline mode or error fetching live API data.");
+    }
+}
+
+// ---------------------------------------------------------
+// 2. SEARCH POST BY ID
+// ---------------------------------------------------------
 async function searchPostById() {
-    
-    const searchId = document.getElementById("search-id").value;
+    const searchId = document.getElementById("search-id").value.trim();
     if (!searchId) {
         alert("Please enter an ID number to search!");
         return;
     }
 
     try {
-       
-        const response = await fetch(`${API_URL}/${searchId}`);
-        
-      
-        if (!response.ok) {
-            alert(`Post with ID ${searchId} was not found.`);
+        // Safe string-based comparison
+        const post = allPosts.find(p => String(p.id) === String(searchId));
+
+        if (!post) {
+            alert("Post not found.");
             return;
         }
 
-        const post = await response.json();
-        
-        
-        const singlePostArray = [post];
-        console.log("found",singlePostArray);
-      
-        renderList(singlePostArray);
+        renderList([post]);
 
     } catch (error) {
         alert("Error while looking for the post.");
     }
 }
 
+// ---------------------------------------------------------
+// 3. HANDLE SAVE (Add and Update functionality with dynamic type fix)
+// ---------------------------------------------------------
+async function handleSave() {
+    const id = document.getElementById("post-id").value.trim();
+    const title = document.getElementById("post-title").value.trim();
+    const body = document.getElementById("post-body").value.trim();
 
-async function getPosts() {
+    if (!title || !body) {
+        alert("Please fill out both fields!");
+        return;
+    }
+
+    // CASE 1: ADD NEW POST
+    if (id === "") {
+        const payload = { title, body, userId: 1 };
+
+        try {
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                alert("Server error occurred.");
+                return;
+            }
+
+            const savedPost = await response.json();
+
+            // Calculate exact unique ID above 100 sequentially
+            let dynamicId;
+            if (allPosts.length > 0) {
+                dynamicId = Math.max(...allPosts.map(post => Number(post.id))) + 1;
+            } else {
+                dynamicId = 101;
+            }
+            
+            // Store as a String to strictly match standard DOM field type output
+            savedPost.id = String(dynamicId);
+
+            allPosts.push(savedPost);
+            
+            // Sync immediately to local storage cache
+            localStorage.setItem("my_cached_posts", JSON.stringify(allPosts));
+
+            renderList(allPosts);
+            clearForm();
+            alert("Post Added Successfully! ID: " + savedPost.id);
+
+        } catch (error) {
+            console.error(error);
+            alert("Network error.");
+        }
+        return;
+    }
+
+    // CASE 2: UPDATE EXISTING POST
+    const payload = {
+        id: String(id), // Keep consistent with lookup arrays
+        title,
+        body,
+        userId: 1
+    };
+
     try {
-       
-        document.getElementById("search-id").value = "";
+        // If local custom ID (>100)
+        if (Number(id) > 100) {
+            const index = allPosts.findIndex(post => String(post.id) === String(id));
 
-        const response = await fetch(API_URL);
-        const posts = await response.json();
+            if (index !== -1) {
+                allPosts[index] = payload;
+                localStorage.setItem("my_cached_posts", JSON.stringify(allPosts));
+            } else {
+                alert("Error: Post ID " + id + " does not exist in local storage memory.");
+                console.log("Failed lookup block. ID searched:", id, "Existing IDs:", allPosts.map(p => p.id));
+                return;
+            }
+
+            renderList(allPosts);
+            clearForm();
+            alert("Updated Successfully (Local ID > 100)!");
+            return;
+        }
+
+        // Standard API original posts (1 to 100)
+        const response = await fetch(API_URL + "/" + id, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            alert("Server error occurred.");
+            return;
+        }
+
+        const updatedPost = await response.json();
+        const index = allPosts.findIndex(post => String(post.id) === String(updatedPost.id));
+
+        if (index !== -1) {
+            updatedPost.id = String(updatedPost.id); // Ensure normalization keeps working
+            allPosts[index] = updatedPost;
+        }
         
-        const limitedPosts = posts;
-        //posts.slice(0, 5);
-        postarr.push(...limitedPosts);
-        console.log(postarr);
-        localStorage.setItem("my_cached_posts", JSON.stringify(limitedPosts));
-        
-        renderList(postarr);
+        localStorage.setItem("my_cached_posts", JSON.stringify(allPosts));
+        renderList(allPosts);
+        clearForm();
+        alert("Updated Successfully!");
+
     } catch (error) {
-        console.log("Offline mode. Loading local storage cache.");
+        console.error(error);
+        alert("Network error.");
     }
 }
 
+// ---------------------------------------------------------
+// 4. DELETE POST
+// ---------------------------------------------------------
+async function deletePost(id) {
+    const confirmation = confirm("Are you sure you want to delete post #" + id + "?");
+    if (!confirmation) return; 
 
+    try {
+        // Normal code execution check for safety bounds
+        if (Number(id) <= 100) {
+            await fetch(API_URL + "/" + id, { method: "DELETE" });
+        }
+
+        alert("Post successfully deleted!");
+        allPosts = allPosts.filter(post => String(post.id) !== String(id));
+
+        renderList(allPosts); 
+        localStorage.setItem("my_cached_posts", JSON.stringify(allPosts));
+
+    } catch (error) {
+        alert("Error connecting to the server.");
+    }
+}
+
+// ---------------------------------------------------------
+// 5. HELPER FUNCTIONS (UI Setup, Forms, Escape Chars)
+// ---------------------------------------------------------
 function renderList(postsArray) {
     const container = document.getElementById("list-container");
     container.innerHTML = ""; 
@@ -81,147 +233,6 @@ function renderList(postsArray) {
         container.appendChild(card);
     });
 }
-
-
-// async function handleSave() {
-//     const id = document.getElementById("post-id").value;
-//     const title = document.getElementById("post-title").value;
-//     const body = document.getElementById("post-body").value;
-
-//     if (!title || !body) {
-//         alert("Please fill out both fields!");
-//         return;
-//     }
-
-//     const payload = { title: title, body: body, userId: 1 };
-//     let url = API_URL;
-//     let httpMethod = "POST"; 
-
-//     if (id !== "") {
-//         url = API_URL + "/" + id;
-//         httpMethod = "PUT";
-//     }
-
-//     try {
-//         const response = await fetch(url, {
-//             method: httpMethod,
-//             headers: { "Content-Type": "application/json" },
-//             body: JSON.stringify(payload)
-//         });
-
-//         if (response.ok) {
-//             alert("Success!");
-//             console.log("put/ post",payload);
-//             postarr = [...postarr,payload];
-//             console.log(" add arr",postarr);
-//             clearForm();
-//              renderList(postarr); 
-//         } else {
-//             alert("Server error occurred.");
-//         }
-//     } catch (error) {
-//         alert("Network error.");
-//     }
-// }
-
-async function handleSave() {
-    const id = document.getElementById("post-id").value;
-    const title = document.getElementById("post-title").value;
-    const body = document.getElementById("post-body").value;
-
-    if (!title || !body) {
-        alert("Please fill out both fields!");
-        return;
-    }
-
-    let payload = {
-        title: title,
-        body: body,
-        userId: 1
-    };
-
-    let url = API_URL;
-    let httpMethod = "POST";
-
-    if (id !== "") {
-        url = API_URL + "/" + id;
-        httpMethod = "PUT";
-        payload.id = Number(id);
-    }
-
-    try {
-        const response = await fetch(url, {
-            method: httpMethod,
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        });
-
-        if (response.ok) {
-
-            const savedPost = await response.json();
-
-            if (httpMethod === "POST") {
-
-                // If API doesn't return an id, create one
-                if (!savedPost.id) {
-                    savedPost.id = Date.now();
-                }
-
-                postarr.push(savedPost);
-
-            } else {
-
-                // Update existing object
-                postarr = postarr.map(post =>
-                    post.id == savedPost.id
-                        ? savedPost
-                        : post
-                );
-
-            }
-
-            console.log(postarr);
-
-            renderList(postarr);
-            clearForm();
-
-            alert("Success!");
-
-        } else {
-            alert("Server error occurred.");
-        }
-
-    } catch (error) {
-        console.error(error);
-        alert("Network error.");
-    }
-}
-
-
-async function deletePost(id) {
-    const confirmation = confirm("Are you sure you want to delete post #" + id + "?");
-    if (!confirmation) return; 
-
-    try {
-        const response = await fetch(API_URL + "/" + id, {
-            method: "DELETE"
-        });
-
-        if (response.ok) {
-            alert("Post successfully deleted!");
-            const responseData = await response.json();
-            console.log("delete", responseData);
-            getPosts(); 
-        } else {
-            alert("Could not complete the delete action.");
-        }
-    } catch (error) {
-        alert("Error connecting to the server.");
-    }
-}
-
 
 function setupEditForm(id, title, body) {
     document.getElementById("form-title").textContent = "Edit Existing Post (#" + id + ")";
