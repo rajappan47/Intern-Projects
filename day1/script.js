@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function closeModal() {
     modalOverlay.classList.remove("active");
-    document.body.style.overflow = "visible";
-     document.body.style.overflow = "visible";
-    document.documentElement.style.overflow = "visible";
+    document.body.style.overflow = "";
+     //document.body.style.overflow = "visible";
+    document.documentElement.style.overflow = "";
 }
 
   const products = ['Overview', 'Pricing', 'Marketplace', 'Features', 'Integrations'];
