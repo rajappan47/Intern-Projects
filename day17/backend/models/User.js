@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema(
       default: 'Reader',
     },
     refreshToken: {
-      type: String, // Persisted to enable refresh token rotation & logout revocation
+      type: String, 
       default: null,
     },
   },
